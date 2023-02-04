@@ -17,8 +17,11 @@ public class Player : MonoBehaviour
     bool invertUpDown = true;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
+    [SerializeField]
     private float playerSpeed = 5.0f;
+    [SerializeField]
     private float jumpHeight = 1.0f;
+    [SerializeField]
     private float gravityValue = -9.81f; 
 
     // Start is called before the first frame update
