@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     bool invertUpDown = true;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 5.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f; 
 
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         float axial = Input.GetAxis("Vertical"); //forward/backward
         float strafe = Input.GetAxis("Horizontal"); //side to side
         if(axial != 0 || strafe != 0) {
-            print("axial: " + axial + "\nstrafe: " + strafe);
+            HandleMovement(new Vector3(strafe, 0, axial));
         }
 
         float lookUpDown = Input.GetAxis("Mouse Y") * Time.deltaTime * verticalLookSensitivity * (invertUpDown ? -1 : 1);
@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
         if(!Mathf.Approximately(0, lookUpDown) || !Mathf.Approximately(0, lookLeftRight)) {
             HandleLook(lookLeftRight, lookUpDown);
         }
+
+
 
         HandleAttack(Input.GetAxis("Fire1")); //LMB
     }
