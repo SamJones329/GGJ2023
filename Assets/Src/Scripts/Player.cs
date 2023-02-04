@@ -40,12 +40,12 @@ public class Player : MonoBehaviour
         float axial = Input.GetAxis("Vertical"); //forward/backward
         float strafe = Input.GetAxis("Horizontal"); //side to side
         if(axial != 0 || strafe != 0) {
-            HandleMovement(new Vector3(strafe, 0, axial));
+            print("axial: " + axial + "\nstrafe: " + strafe);
         }
 
         float lookUpDown = Input.GetAxis("Mouse Y") * Time.deltaTime * verticalLookSensitivity * (invertUpDown ? -1 : 1);
         float lookLeftRight = Input.GetAxis("Mouse X") * Time.deltaTime * horizontalLookSensitivity;
-        if(Mathf.Approximately(0, lookUpDown) || Mathf.Approximately(0, lookLeftRight)) {
+        if(!Mathf.Approximately(0, lookUpDown) || !Mathf.Approximately(0, lookLeftRight)) {
             HandleLook(lookLeftRight, lookUpDown);
         }
 
