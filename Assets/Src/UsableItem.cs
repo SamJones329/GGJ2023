@@ -1,5 +1,4 @@
-public interface UsableItem<T> {
-    public void setPrimaryInputState(T value);
+public interface UsableItem {
 
-    public void setSecondaryInputState(T value);
+    public void updateStates(bool primaryState, bool SecondaryState);
 }

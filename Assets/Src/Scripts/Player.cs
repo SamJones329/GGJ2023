@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f; 
 
+    private UsableItem[] hotbarItems;
+    private int selectedHotbarItem = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,8 @@ public class Player : MonoBehaviour
         if(!playerCamera) {
             playerCamera = GetComponentInChildren<Camera>();
         }
+
+        hotbarItems = new UsableItem[] {new Axe(), new Bow(), new Wrench()};
 
     }
 
@@ -52,9 +57,7 @@ public class Player : MonoBehaviour
             HandleLook(lookLeftRight, lookUpDown);
         }
 
-
-
-        HandleAttack(Input.GetAxis("Fire1")); //LMB
+        hotbarItems[selectedHotbarItem].updateStates(Input.GetAxis("Fire1") > 0, Input.GetAxis("Fire2") > 0);
     }
 
     ///<summary>Uses movement relative to characters local axes</summary>
@@ -85,24 +88,4 @@ public class Player : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    bool holdingAttack = false;
-    float chargeTime = 0;
-    const float minChargeTime = 0.5f;
-    const float maxChargeTime = 2; //seconds
-    void HandleAttack(float attack) {
-        print(attack);
-        if(attack > 0) {
-            if(holdingAttack) {
-                chargeTime += Time.deltaTime;
-            } else {
-                holdingAttack = true;
-            }
-        } else if(holdingAttack) {
-            holdingAttack = false;
-            if(chargeTime > minChargeTime) {
-                // Shoot()
-                chargeTime = 0;
-            }
-        }
-    }
 }
