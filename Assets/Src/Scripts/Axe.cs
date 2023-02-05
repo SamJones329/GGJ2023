@@ -11,9 +11,9 @@ public class Axe : UsableItem {
     float secondaryChargeTime = 0.0f;
     float cooldownTime = 0.0f;
 
-    public void updateStates(bool primaryState, bool secondaryState) {
-        setPrimaryInputState(primaryState);
-        setSecondaryInputState(secondaryState);
+    public void updateStates(bool newPrimaryState, bool newSecondaryState) {
+        setPrimaryInputState(newPrimaryState);
+        setSecondaryInputState(newSecondaryState);
     }
 
     private void setPrimaryInputState(bool value) {
